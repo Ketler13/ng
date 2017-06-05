@@ -1,0 +1,4 @@
+.selected {
+  border-color: #ff94c2;
+  transition: all .3s;
+}
