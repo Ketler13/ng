@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LetterListComponent } from './letter-list/letter-list.component';
 import { LetterComponent } from './letter-list/letter/letter.component';
+import { RetrospecPipe } from './retrospec.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LetterListComponent,
-    LetterComponent
+    LetterComponent,
+    RetrospecPipe
   ],
   imports: [
     BrowserModule,

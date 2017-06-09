@@ -1,7 +1,7 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     <h3 class="panel-title" (click)="toggleText()">From: {{letter.from}}</h3>
-    <p>{{letter.date}}</p>
+    <p>{{letter.date | retrospec}}</p>
   </div>
   <div *ngIf="isOpen" class="panel-body">
     <div class="row">
