@@ -1,13 +1,17 @@
 <div class="panel panel-info">
   <div class="panel-heading">
-    <h3 class="panel-title" (click)="toggleText()">From: {{letter.from}}</h3>
+    <h3 class="panel-title">From: {{letter.from}}</h3>
     <p>{{letter.date | retrospec}}</p>
+    <button class="btn btn-primary" (click)="toggleText()">{{isOpen ? "hide" : "show"}}</button>
   </div>
   <div *ngIf="isOpen" class="panel-body">
     <div class="row">
       <div class=" col-md-9 col-lg-9 ">
         <p>
           {{letter.text}}
+        </p>
+        <p>
+          <sub>Letter was send at {{letter.date | datePrettify}}</sub>
         </p>
       </div>
     </div>

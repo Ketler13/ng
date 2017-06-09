@@ -6,16 +6,18 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./letter.component.css']
 })
 export class LetterComponent implements OnInit {
-  @Input() letter;
+  @Input() letter: object;
 
-  constructor() { }
+  private isOpen: boolean
+
+  constructor() {
+    this.isOpen = false
+  }
 
   ngOnInit() {
   }
 
-  private isOpen = false
-
-  toggleText() {
+  toggleText(): void {
     this.isOpen = !this.isOpen
   }
 
