@@ -1,0 +1,11 @@
+<div>
+  <p>
+    From: {{letter.from}}
+  </p>
+  <p (click)='toggleText()'>
+    {{letter.title}}
+  </p>
+  <p *ngIf='isOpen'>
+    {{letter.text}}
+  </p>
+</div>

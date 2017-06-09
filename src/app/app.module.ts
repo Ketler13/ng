@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
+import { LetterListComponent } from './letter-list/letter-list.component';
+import { LetterComponent } from './letter-list/letter/letter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    LetterListComponent,
+    LetterComponent
   ],
   imports: [
     BrowserModule,
