@@ -1,11 +1,15 @@
-<div>
-  <p>
-    From: {{letter.from}}
-  </p>
-  <p (click)='toggleText()'>
-    {{letter.title}}
-  </p>
-  <p *ngIf='isOpen'>
-    {{letter.text}}
-  </p>
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title" (click)="toggleText()">From: {{letter.from}}</h3>
+    <p>{{letter.date}}</p>
+  </div>
+  <div *ngIf="isOpen" class="panel-body">
+    <div class="row">
+      <div class=" col-md-9 col-lg-9 ">
+        <p>
+          {{letter.text}}
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
