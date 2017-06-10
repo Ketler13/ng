@@ -7,15 +7,13 @@ import { AppComponent } from './app.component';
 import { LetterListComponent } from './letter-list/letter-list.component';
 import { LetterComponent } from './letter-list/letter/letter.component';
 import { RetrospecPipe } from './retrospec.pipe';
-import { DatePrettifyPipe } from './date-prettify.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     LetterListComponent,
     LetterComponent,
-    RetrospecPipe,
-    DatePrettifyPipe
+    RetrospecPipe
   ],
   imports: [
     BrowserModule,
