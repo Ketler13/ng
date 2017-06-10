@@ -7,12 +7,18 @@ import { LETTERS } from './mock-letters'
   styleUrls: ['./letter-list.component.css']
 })
 export class LetterListComponent implements OnInit {
+  private showFromNewest: boolean;
+  private letters = LETTERS
 
-  constructor() { }
+  constructor() {
+    this.showFromNewest = true
+  }
+
+  toggleOrder() {
+    this.showFromNewest = !this.showFromNewest
+  }
 
   ngOnInit() {
   }
-
-  private letters = LETTERS
 
 }

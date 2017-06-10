@@ -1,1 +1,5 @@
-<app-letter *ngFor='let letter of letters' [letter]='letter'></app-letter>
+<div>
+  <p>Show from:</p>
+  <button class = 'btn btn-success' (click)='toggleOrder()'>{{showFromNewest ? 'oldest' : 'newest'}}</button>
+</div>
+<app-letter *ngFor='let letter of (letters | sort:showFromNewest)' [letter]='letter'></app-letter>
