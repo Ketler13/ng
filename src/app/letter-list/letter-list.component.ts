@@ -14,7 +14,11 @@ export class LetterListComponent implements OnInit {
     this.showFromNewest = true
   }
 
-  toggleOrder() {
+  ngOnInit() {
+    setInterval(() => this.pushRandomLetter(), 10000)
+  }
+
+  toggleOrder(): void {
     this.showFromNewest = !this.showFromNewest
   }
 
@@ -22,7 +26,10 @@ export class LetterListComponent implements OnInit {
     this.letters = this.letters.filter(letter => letter.id !== id)
   }
 
-  ngOnInit() {
+  pushRandomLetter(): void {
+    const x = Math.round(Math.random()) + 1
+    const y = Math.floor(Math.random() * this.letters.length)
+    this.letters.push(this.letters[y])
   }
 
 }
