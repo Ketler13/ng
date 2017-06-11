@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Letter } from '../letter';
 
 @Component({
   selector: 'app-letter',
@@ -6,9 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./letter.component.css']
 })
 export class LetterComponent implements OnInit {
-  @Input() letter: object;
+  @Input() letter: Letter;
+  @Output() remove = new EventEmitter<string>();
 
-  private isOpen: boolean
+  private isOpen: boolean;
 
   constructor() {
     this.isOpen = false
@@ -19,6 +21,10 @@ export class LetterComponent implements OnInit {
 
   toggleText(): void {
     this.isOpen = !this.isOpen
+  }
+
+  removeLetter(): void {
+    this.remove.emit(this.letter.id)
   }
 
 }

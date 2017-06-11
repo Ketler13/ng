@@ -1,5 +1,16 @@
 <div>
   <p>Show from:</p>
-  <button class = 'btn btn-success' (click)='toggleOrder()'>{{showFromNewest ? 'oldest' : 'newest'}}</button>
+  <button
+    class = 'btn btn-success'
+    (click)='toggleOrder()'>
+      {{showFromNewest ? 'oldest' : 'newest'}}
+  </button>
 </div>
-<app-letter *ngFor='let letter of (letters | sort:showFromNewest)' [letter]='letter'></app-letter>
+<div *ngIf='letters.length === 0 || !letters.length'>
+  You don't have letters
+</div>
+<app-letter
+  *ngFor='let letter of (letters | sort:showFromNewest)'
+  [letter]='letter'
+  (remove)='removeLetter($event)'>
+</app-letter>

@@ -3,6 +3,7 @@
     <h3 class="panel-title">From: {{letter.from}}</h3>
     <p>{{letter.date | retrospec}}</p>
     <button class="btn btn-primary" (click)="toggleText()">{{isOpen ? "hide" : "show"}}</button>
+    <button class="btn btn-danger" (click)="removeLetter()">Delete</button>
   </div>
   <div *ngIf="isOpen" class="panel-body">
     <div class="row">

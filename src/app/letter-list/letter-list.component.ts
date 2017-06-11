@@ -18,6 +18,10 @@ export class LetterListComponent implements OnInit {
     this.showFromNewest = !this.showFromNewest
   }
 
+  removeLetter(id: string): void {
+    this.letters = this.letters.filter(letter => letter.id !== id)
+  }
+
   ngOnInit() {
   }
 
