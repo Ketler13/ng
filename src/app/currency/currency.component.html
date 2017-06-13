@@ -1,0 +1,9 @@
+<div>
+  <p>USD/UAH: {{course ? course.buy : 'loading...'}}</p>
+  <input #input type="text" name="" value="" (keyup)="0">
+  <button type="button" name="button" (click)='toggleRatio()'>Switch</button>
+  <p *ngIf='course'>
+    {{(ratio === 'toUSD' ? input.value / course.buy : input.value * course.buy).toFixed(3)}}
+    {{ratio === 'toUSD' ? 'USD' : 'UAH'}}
+  </p>
+</div>

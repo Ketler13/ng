@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Homework 3'
+  title = 'Homework 3';
+  private isVidgetOpen: boolean;
+
+  constructor() {
+    this.isVidgetOpen = false;
+  }
+
+  toggleVidget() {
+    this.isVidgetOpen = !this.isVidgetOpen;
+  }
 }

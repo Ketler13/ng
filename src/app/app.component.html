@@ -1,2 +1,4 @@
 <h1>{{title}}</h1>
+<button (click)='toggleVidget()'>{{isVidgetOpen ? 'hide vidget' : 'show vidget'}}</button>
+<app-currency *ngIf='isVidgetOpen'></app-currency>
 <app-user-list></app-user-list>
