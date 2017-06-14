@@ -8,26 +8,40 @@ import { Currency } from '../services/currency';
   styleUrls: ['./currency.component.css']
 })
 export class CurrencyComponent implements OnInit {
-  public course: Currency;
-  public ratio: string;
+  public toBase: boolean;
+  public selected: string;
+  public value: number;
+  public result: number;
+  
   constructor(private currencyService: CurrencyService) {
-    this.ratio = 'toUSD'
+    this.toBase = false;
+    this.selected = 'USD';
+    this.result = 0;
   }
 
   ngOnInit(): void {
-    this.getCourse()
+    this.currencyService.getCourses()
   }
 
-  getCourse(): void {
-    this.currencyService
-      .getCourses()
-      .then(data => {
-          this.course = data.filter(c => c.ccy === 'USD')[0]
-      })
+  setCurrency(currency) {
+    this.selected = currency
+    this.getResult()
   }
 
-  toggleRatio():void {
-    this.ratio = this.ratio === 'toUSD' ? 'toUAH' : 'toUSD'
+  setValue(value) {
+    this.value = value
+    this.getResult()
+  }
+
+  toggleRatio() {
+    this.toBase = !this.toBase
+    this.getResult()
+  }
+
+  getResult() {
+    this.result = this.toBase ?
+    this.currencyService.toBase(this.selected, this.value) :
+    this.currencyService.fromBase(this.selected, this.value)
   }
 
 }
