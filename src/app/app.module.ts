@@ -1,28 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { UserService } from './services/user.service'
-import { CurrencyService } from './services/currency.service'
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserComponent } from './user-list/user/user.component';
-import { CurrencyComponent } from './currency/currency.component';
+import { WikiSearchComponent } from './wiki-search/wiki-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UserComponent,
-    CurrencyComponent
+    WikiSearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    JsonpModule
   ],
-  providers: [UserService, CurrencyService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
