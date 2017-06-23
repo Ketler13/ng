@@ -17,13 +17,19 @@ export class UserService {
 
   constructor(private http: Http) {
     this.randomSince = Math.floor(Math.random() * 100);
-    this.URL = `https://api.github.com/users?since=${this.randomSince}`;
+    this.URL = "https://api.github.com/users";
   }
 
-  getMail() {
+  getUsers() {
     return this.http
-      .get(this.URL)
+      .get(`${this.URL}?since=${this.randomSince}`)
       .map(data => data.json() as User[])
+  }
+
+  getUser(login: string) {
+    return this.http
+      .get(`${this.URL}/${login}`)
+      .map(data => data.json() as User)
   }
 
 }

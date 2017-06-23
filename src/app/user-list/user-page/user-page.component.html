@@ -1,3 +1,8 @@
-<p>
-  user-page works!
-</p>
+<div>
+  <p *ngIf="!user">...loading</p>
+  <div *ngIf="user">
+    <p>{{user.name}}</p>
+    <p>{{user.id}}</p>
+    <p>{{user.login}}</p>
+  </div>
+</div>
