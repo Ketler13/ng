@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WikiSearchComponent } from './wiki-search.component';
+import { MailBoxComponent } from './mail-box.component';
 
-describe('WikiSearchComponent', () => {
-  let component: WikiSearchComponent;
-  let fixture: ComponentFixture<WikiSearchComponent>;
+describe('MailBoxComponent', () => {
+  let component: MailBoxComponent;
+  let fixture: ComponentFixture<MailBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WikiSearchComponent ]
+      declarations: [ MailBoxComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WikiSearchComponent);
+    fixture = TestBed.createComponent(MailBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
