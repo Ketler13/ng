@@ -10,6 +10,8 @@ import { MailBoxComponent } from './mail-box/mail-box.component';
 import { UserCardComponent } from './user-list/user-card/user-card.component';
 import { UserPageComponent } from './user-list/user-page/user-page.component';
 
+import { UserService } from './user-list/user.service';
+
 const routes: Route[] = [
   { path: 'users', component: UserListComponent },
   { path: 'users/:login', component: UserPageComponent },
@@ -31,7 +33,7 @@ const routes: Route[] = [
     HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

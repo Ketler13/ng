@@ -1,8 +1,10 @@
 <div>
   <p *ngIf="!user">...loading</p>
+  <p *ngIf="error">error</p>
   <div *ngIf="user">
     <p>{{user.name}}</p>
     <p>{{user.id}}</p>
     <p>{{user.login}}</p>
   </div>
+  <button type="button" (click)="goBack()">Back</button>
 </div>
