@@ -12,7 +12,7 @@ export class MailBoxComponent implements OnInit {
   constructor(private mailService: MailService) { }
 
   ngOnInit() {
-    console.log(this.mailService);
+
   }
 
 }

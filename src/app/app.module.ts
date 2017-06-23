@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { MailBoxComponent } from './mail-box/mail-box.component';
+import { UserCardComponent } from './user-list/user-card/user-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    MailBoxComponent
+    MailBoxComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
