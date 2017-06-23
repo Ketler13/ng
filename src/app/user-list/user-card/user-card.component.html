@@ -2,7 +2,7 @@
   <div class="profile-header-img">
     <img class="img-circle" [src]="user.avatar_url" />
     <div class="rank-label-container">
-      <a [href]="user.repos_url" class="label label-default rank-label">{{user.login}}</a>
+      <a [routerLink]="user.login" class="label label-default rank-label">{{user.login}}</a>
     </div>
   </div>
 </div>

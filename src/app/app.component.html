@@ -1,3 +1,5 @@
 <h1>{{title}}</h1>
-<app-user-list></app-user-list>
-<app-mail-box></app-mail-box>
+<a routerLink="users" routerLinkActive="red"
+[routerLinkActiveOptions]="{exact: true}">home</a>
+<a routerLink="mail" routerLinkActive="red">mail</a>
+<router-outlet></router-outlet>
