@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Mail } from '../mail';
 
 @Component({
@@ -19,5 +20,7 @@ export class MailItemComponent implements OnInit {
       this.isNew = false;
     }, 2000);
   }
+
+
 
 }

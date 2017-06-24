@@ -13,6 +13,16 @@ import { Mail } from './mail';
 
 @Injectable()
 export class MailService {
+  cachedMails: object;
+
+  constructor() {
+    this.cachedMails = {};
+    MockMail.forEach(mail => this.cachedMails[mail.id] = mail);
+  }
+
+  getMail(id: number): Mail {
+    return this.cachedMails[id];
+  }
 
   getMailList() {
     return Observable
@@ -20,7 +30,11 @@ export class MailService {
       .concat(
         Observable
           .interval(7000)
-          .map(x => MockMail[Math.floor(Math.random() * MockMail.length)])
+          .map(x => {
+            const mail = MockMail[Math.floor(Math.random() * MockMail.length)];
+            this.cachedMails[mail.id] = mail;
+            return mail;
+          })
       )
   }
 

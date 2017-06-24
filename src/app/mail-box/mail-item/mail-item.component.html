@@ -1,6 +1,5 @@
 <div class="mail-item" [class.new]="isNew">
-    <p>{{mail.from}}</p>
-    <p>{{mail.date}}</p>
+    <p>From: {{mail.from}}, date: {{mail.date}}</p>
     <p>{{mail.title}}</p>
-    <p>{{mail.text}}</p>
+    <a [routerLink]="mail.id">Open</a>
 </div>
