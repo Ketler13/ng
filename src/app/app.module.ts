@@ -11,6 +11,7 @@ import { UserCardComponent } from './user-list/user-card/user-card.component';
 import { UserPageComponent } from './user-list/user-page/user-page.component';
 
 import { UserService } from './user-list/user.service';
+import { MailItemComponent } from './mail-box/mail-item/mail-item.component';
 
 const routes: Route[] = [
   { path: 'users', component: UserListComponent },
@@ -25,7 +26,8 @@ const routes: Route[] = [
     UserListComponent,
     MailBoxComponent,
     UserCardComponent,
-    UserPageComponent
+    UserPageComponent,
+    MailItemComponent
   ],
   imports: [
     BrowserModule,
