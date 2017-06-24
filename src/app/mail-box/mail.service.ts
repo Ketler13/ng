@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/concat';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/interval';
 
 import { MockMail } from './mock-mail';
@@ -19,8 +20,8 @@ export class MailService {
     this.cachedMails = MockMail;
   }
 
-  getMail(id: number): Mail {
-    return this.cachedMails[id];
+  getMail(id: string): Observable<Mail> {
+    return Observable.of(this.cachedMails[id]);
   }
 
   getMailList() {

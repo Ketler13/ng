@@ -7,9 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent }       from './app.component';
 import { UserListComponent }  from './user-list/user-list.component';
-import { MailBoxComponent }   from './mail-box/mail-box.component';
 import { UserCardComponent }  from './user-list/user-card/user-card.component';
 import { UserPageComponent }  from './user-list/user-page/user-page.component';
+import { MailBoxComponent }   from './mail-box/mail-box.component';
 import { MailItemComponent }  from './mail-box/mail-item/mail-item.component';
 import { MailPageComponent }  from './mail-box/mail-page/mail-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';

@@ -21,6 +21,4 @@ export class MailItemComponent implements OnInit {
     }, 2000);
   }
 
-
-
 }

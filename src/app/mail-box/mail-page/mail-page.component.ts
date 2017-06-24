@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { Component, OnInit }              from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
@@ -26,11 +25,12 @@ export class MailPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-      .subscribe(params => this.mail = this.mailService.getMail(params.id));
+      .switchMap((params: Params) => this.mailService.getMail(params.id))
+      .subscribe((mail: Mail) => this.mail = mail);
   }
 
   goBack(): void {
-    this.router.navigate(['/mail'])
+    this.router.navigate(['/mail']);
   }
 
 }
