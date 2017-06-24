@@ -13,9 +13,12 @@ import { MailBoxComponent }   from './mail-box/mail-box.component';
 import { MailItemComponent }  from './mail-box/mail-item/mail-item.component';
 import { MailPageComponent }  from './mail-box/mail-page/mail-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { LoginComponent } from './login/login.component';
 
 import { UserService } from './user-list/user.service';
 import { MailService } from './mail-box/mail.service';
+import { AuthGuardService } from './auth-guard.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { MailService } from './mail-box/mail.service';
     UserPageComponent,
     MailItemComponent,
     MailPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { MailService } from './mail-box/mail.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [UserService, MailService],
+  providers: [UserService, MailService, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

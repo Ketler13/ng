@@ -1,0 +1,9 @@
+<div >
+  <p>{{message}}</p>
+  <button *ngIf="!auth.isLoggedIn" type="button" (click)="login()">
+    log in
+  </button>
+  <button *ngIf="auth.isLoggedIn" type="button" (click)="logout()">
+    log out
+  </button>
+</div>
