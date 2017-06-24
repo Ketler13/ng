@@ -19,7 +19,7 @@ export class MailService {
       .from(MockMail)
       .concat(
         Observable
-          .interval(2000)
+          .interval(7000)
           .map(x => MockMail[Math.floor(Math.random() * MockMail.length)])
       )
   }

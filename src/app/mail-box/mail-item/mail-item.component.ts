@@ -8,10 +8,16 @@ import { Mail } from '../mail';
 })
 export class MailItemComponent implements OnInit {
   @Input() mail: Mail;
+  isNew: boolean;
 
-  constructor() { }
+  constructor() {
+    this.isNew = true;
+  }
 
   ngOnInit() {
+    setTimeout(() => {
+      this.isNew = false;
+    }, 2000);
   }
 
 }

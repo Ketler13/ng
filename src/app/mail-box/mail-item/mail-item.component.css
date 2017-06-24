@@ -1,0 +1,9 @@
+.mail-item {
+  margin: 10px;
+  background-color: rgb(174, 168, 211);
+  transition: background-color .3s;
+}
+
+.mail-item.new {
+  background-color: rgb(155, 89, 182);
+}
