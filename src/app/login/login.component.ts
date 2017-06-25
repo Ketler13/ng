@@ -26,11 +26,7 @@ export class LoginComponent implements OnInit {
     this.auth.login().subscribe(() => {
       this.setMessage();
       if (this.auth.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
         let redirect = this.auth.redirectUrl ? this.auth.redirectUrl : '/users';
-
-        // Redirect the user
         this.router.navigate([redirect]);
       }
     });

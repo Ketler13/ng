@@ -16,7 +16,7 @@ const routes: Route[] = [
   { path: 'users/:login', component: UserPageComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'mail', component: MailBoxComponent, canActivate: [AuthGuardService] },
-  { path: 'mail/:id', component: MailPageComponent },
+  { path: 'mail/:id', component: MailPageComponent, canActivate: [AuthGuardService] },
   { path: '**', component: ErrorPageComponent }
 ];
 
