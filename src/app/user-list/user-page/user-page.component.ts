@@ -23,7 +23,7 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .switchMap(params => this.userService.getUser(params.surname))
+      .switchMap(params => this.userService.getUser(params.id))
       .subscribe(user => this.user = user);
   }
 
@@ -31,13 +31,18 @@ export class UserPageComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
-  updateInfo() {
+  updateInfo(f) {
+    const { firstName, surname, email } = f.form.controls;
     this.userService.setUserData(
       {
-        firstName: 'igor'
+        name: firstName.value,
+        surname: surname.value,
+        email: email.value
       },
-      this.user.surname
-    ).subscribe(updatedUser => this.user = updatedUser)
+      this.user.id
+    ).subscribe(updatedUser => {
+      this.user = updatedUser
+    })
   }
 
 }

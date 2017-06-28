@@ -1,3 +1,10 @@
-<p>{{user.surname}} {{user.firstName}}</p>
+<p>{{user.surname}} {{user.name}}</p>
+<p>{{user.email}}</p>
+<form #f="ngForm" (ngSubmit)="updateInfo(f)">
+  <input #nameModel="ngModel" name="surname" type="text" [ngModel]="user.surname" required>
+  <input #nameModel="ngModel" name="firstName" type="text" [ngModel]="user.name" required>
+  <input #nameModel="ngModel" name="email" type="text" [ngModel]="user.email" required>
+  <input type="submit" value="update">
+</form>
 <button type="button" (click)="updateInfo()">update</button>
 <button type="button" (click)="goBack()">go back</button>

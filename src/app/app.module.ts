@@ -14,7 +14,7 @@ import  { UserService } from './user.service';
 const routes: Route[] = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
   {path: 'users', component: UserListComponent},
-  {path: 'users/:surname', component: UserPageComponent},
+  {path: 'users/:id', component: UserPageComponent},
   {path: '**', redirectTo: 'users', pathMatch: 'full'}
 ]
 

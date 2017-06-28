@@ -5,49 +5,42 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/take';
 
 import { User } from './user';
+import { users } from './users-mock';
 
 @Injectable()
 export class UserService {
   private URL: string;
-  users: object;
+  users: User[];
   isInitialRendering: boolean;
 
   constructor(private http: Http) {
     this.URL = 'https://learn.javascript.ru/courses/groups/api/participants?key=1fxf2pg';
     this.isInitialRendering = true;
-    this.users = {};
+    this.users = users;
   }
 
   getUsers(): Observable<User[]> {
-    if (this.isInitialRendering) {
-      return this.http.get(this.URL)
-        .map(res => {
-          const users = res.json() as User[];
-          users.forEach(user => this.users[user.surname] = user);
-          this.isInitialRendering = false;
-          return users;
-        })
-        .catch(err => Observable.throw(err))
-    }
-    const surnames = Object.keys(this.users);
-    return Observable.of(surnames.map(surname => this.users[surname]));
+    return Observable.of(this.users).delay(1000);
   }
 
-  getUser(surname: string): Observable<User> {
-    return Observable.of(this.users[surname]);
+  getUser(id: string): Observable<User> {
+    return Observable.of(this.users.filter(user => user.id === id)[0]);
   }
 
-  setUserData(data, surname): Observable<User> {
-    this.users[surname] = {
-      ...this.users[surname],
-      ...data
-    }
-    return Observable.of(this.users[surname]);
+  setUserData(data, id): Observable<User> {
+    this.users = this.users.map(user => {
+      return user.id === id ? {
+        ...user,
+        ...data
+      } : user
+    });
+    return this.getUser(id);
   }
 
 }

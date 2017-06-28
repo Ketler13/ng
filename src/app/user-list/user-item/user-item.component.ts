@@ -17,7 +17,7 @@ export class UserItemComponent implements OnInit {
   }
 
   openUserPage() {
-    this.router.navigate(['/users', this.user.surname]);
+    this.router.navigate(['/users', this.user.id]);
   }
 
 }
