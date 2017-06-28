@@ -2,43 +2,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
-
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Route } from '@angular/router';
 
 import { AppComponent }       from './app.component';
-import { UserListComponent }  from './user-list/user-list.component';
-import { UserCardComponent }  from './user-list/user-card/user-card.component';
-import { UserPageComponent }  from './user-list/user-page/user-page.component';
-import { MailBoxComponent }   from './mail-box/mail-box.component';
-import { MailItemComponent }  from './mail-box/mail-item/mail-item.component';
-import { MailPageComponent }  from './mail-box/mail-page/mail-page.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { LoginComponent } from './login/login.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserItemComponent } from './user-list/user-item/user-item.component';
+import { UserPageComponent } from './user-list/user-page/user-page.component';
 
-import { UserService } from './user-list/user.service';
-import { MailService } from './mail-box/mail.service';
-import { AuthGuardService } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import  { UserService } from './user.service';
+
+const routes: Route[] = [
+  {path: '', redirectTo: 'users', pathMatch: 'full'},
+  {path: 'users', component: UserListComponent},
+  {path: 'users/:surname', component: UserPageComponent},
+  {path: '**', redirectTo: 'users', pathMatch: 'full'}
+]
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    MailBoxComponent,
-    UserCardComponent,
-    UserPageComponent,
-    MailItemComponent,
-    MailPageComponent,
-    ErrorPageComponent,
-    LoginComponent
+    UserItemComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    RouterModule.forRoot(routes)
   ],
-  providers: [UserService, MailService, AuthGuardService, AuthService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
