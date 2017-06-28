@@ -15,20 +15,27 @@ import { User } from './user';
 export class UserService {
   private URL: string;
   users: object;
+  isInitialRendering: boolean;
 
   constructor(private http: Http) {
     this.URL = 'https://learn.javascript.ru/courses/groups/api/participants?key=1fxf2pg';
+    this.isInitialRendering = true;
     this.users = {};
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get(this.URL)
-      .map(res => {
-        const users = res.json() as User[];
-        users.forEach(user => this.users[user.surname] = user);
-        return users;
-      })
-      .catch(err => Observable.throw(err))
+    if (this.isInitialRendering) {
+      return this.http.get(this.URL)
+        .map(res => {
+          const users = res.json() as User[];
+          users.forEach(user => this.users[user.surname] = user);
+          this.isInitialRendering = false;
+          return users;
+        })
+        .catch(err => Observable.throw(err))
+    }
+    const surnames = Object.keys(this.users);
+    return Observable.of(surnames.map(surname => this.users[surname]));
   }
 
   getUser(surname: string): Observable<User> {
