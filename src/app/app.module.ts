@@ -10,6 +10,7 @@ import { UserItemComponent } from './user-list/user-item/user-item.component';
 import { UserPageComponent } from './user-list/user-page/user-page.component';
 
 import  { UserService } from './user.service';
+import { EmailValidatorDirective } from './email-validator.directive';
 
 const routes: Route[] = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
@@ -23,7 +24,8 @@ const routes: Route[] = [
     AppComponent,
     UserListComponent,
     UserItemComponent,
-    UserPageComponent
+    UserPageComponent,
+    EmailValidatorDirective
   ],
   imports: [
     BrowserModule,

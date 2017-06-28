@@ -30,16 +30,12 @@ export class UserService {
   }
 
   getUser(id: string): Observable<User> {
-    return Observable.of(this.users.filter(user => user.id === id)[0]);
+    return Observable.of(this.users.filter(user => user.id === id)[0]).delay(1000);
   }
 
   setUserData(data, id): Observable<User> {
-    this.users = this.users.map(user => {
-      return user.id === id ? {
-        ...user,
-        ...data
-      } : user
-    });
+    this.users = this.users
+      .map(user => user.id === id ? {...user, ...data} : user);
     return this.getUser(id);
   }
 
