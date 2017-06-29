@@ -40,7 +40,7 @@ export class UserService {
   }
 
   checkEmailUnique(email: string): Observable<boolean> {
-    return Observable.of(this.users.every(user => user.email !== email)).delay(300);
+    return Observable.of(!this.users.some(user => user.email === email)).delay(300);
   }
 
 }

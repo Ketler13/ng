@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 import { NG_VALIDATORS } from '@angular/forms';
 
 function emailValidator(control) {
-  return /^[-.\w]+@([\w-]+\.)+[\w-]{2,12}$/.test(control.value);
+  return /^[-.\w]+@([\w-]+\.)+[\w-]{2,12}$/.test(control.value) ? null : {emailIsValid: true};
 }
 
 

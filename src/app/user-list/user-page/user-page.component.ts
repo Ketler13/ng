@@ -6,6 +6,9 @@ import { UserService } from '../../user.service';
 import { User } from '../../user'
 
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'app-user-page',
@@ -38,9 +41,9 @@ export class UserPageComponent implements OnInit {
     this.goBack();
   }
 
-  updateInfo(f, model) {
+  updateInfo(f) {
     const { firstName, surname, email } = f.form.controls;
-    if (this.emailIsUnique && firstName.valid && surname.valid && email.valid) {
+    if (this.emailIsUnique && f.valid) {
       this.userService
         .setUserData(
           {
@@ -57,7 +60,7 @@ export class UserPageComponent implements OnInit {
 
   checkEmailUnique(email: string): void {
     this.userService.checkEmailUnique(email)
-      .subscribe(res => this.emailIsUnique = res);
+      .subscribe(res => {this.emailIsUnique = res; console.log(this.emailIsUnique)});
   }
 
 }
