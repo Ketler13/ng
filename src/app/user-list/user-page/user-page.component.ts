@@ -59,8 +59,9 @@ export class UserPageComponent implements OnInit {
   }
 
   checkEmailUnique(email: string): void {
+    if (email === this.user.email) { return }
     this.userService.checkEmailUnique(email)
-      .subscribe(res => {this.emailIsUnique = res; console.log(this.emailIsUnique)});
+      .subscribe(res => this.emailIsUnique = res);
   }
 
 }

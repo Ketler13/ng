@@ -2,12 +2,16 @@
   <p>{{user.surname}} {{user.name}}</p>
   <p>{{user.email}}</p>
   <form #f="ngForm" (ngSubmit)="updateInfo(f)">
-    <input #nameModel="ngModel" name="surname" type="text" [ngModel]="user.surname" required>
-    <input #surnameModel="ngModel" name="firstName" type="text" [ngModel]="user.name" required>
+    <input #nameModel="ngModel" name="surname" type="text"
+      [ngModel]="user.surname" minlength="6" required
+    >
+    <input #surnameModel="ngModel" name="firstName" type="text"
+      [ngModel]="user.name" minlength="6" required
+    >
     <input
       emailValidator #emailModel="ngModel" name="email" type="email"
       [ngModel]="user.email" (keyup)="checkEmailUnique(emailModel.value)"
-      [ngClass]="{error: !emailIsUnique}" required
+      [class.error]="!emailIsUnique" required
     >
     <input type="submit" value="update" [disabled]="!f.valid">
   </form>
