@@ -14,12 +14,15 @@ import 'rxjs/add/operator/switchMap';
 })
 export class UserPageComponent implements OnInit {
   user: User;
+  emailIsUnique: boolean;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private userService: UserService
-  ) { }
+  ) {
+    this.emailIsUnique = true;
+  }
 
   ngOnInit() {
     this.route.params
@@ -31,18 +34,30 @@ export class UserPageComponent implements OnInit {
     this.router.navigate(['/users']);
   }
 
-  updateInfo(f) {
+  cancel() {
+    this.goBack();
+  }
+
+  updateInfo(f, model) {
     const { firstName, surname, email } = f.form.controls;
-    this.userService.setUserData(
-      {
-        name: firstName.value,
-        surname: surname.value,
-        email: email.value
-      },
-      this.user.id
-    ).subscribe(updatedUser => {
-      this.user = updatedUser
-    })
+    if (this.emailIsUnique && firstName.valid && surname.valid && email.valid) {
+      this.userService
+        .setUserData(
+          {
+            name: firstName.value,
+            surname: surname.value,
+            email: email.value
+          },
+          this.user.id
+        ).subscribe(_ => this.goBack());
+    } else {
+      alert('form is not valid');
+    }
+  }
+
+  checkEmailUnique(email: string): void {
+    this.userService.checkEmailUnique(email)
+      .subscribe(res => this.emailIsUnique = res);
   }
 
 }

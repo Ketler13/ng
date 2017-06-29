@@ -33,10 +33,14 @@ export class UserService {
     return Observable.of(this.users.filter(user => user.id === id)[0]).delay(1000);
   }
 
-  setUserData(data, id): Observable<User> {
+  setUserData(data, id): Observable<boolean> {
     this.users = this.users
       .map(user => user.id === id ? {...user, ...data} : user);
-    return this.getUser(id);
+    return Observable.of(true).delay(500);
+  }
+
+  checkEmailUnique(email: string): Observable<boolean> {
+    return Observable.of(this.users.every(user => user.email !== email)).delay(300);
   }
 
 }
