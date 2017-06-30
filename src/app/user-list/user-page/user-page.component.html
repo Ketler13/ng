@@ -5,20 +5,20 @@
     <input
       type="text"
       formControlName="name"
-      [class.error]="nameError"
-      [class.valid]="!userForm.controls.name.pristine && !nameError">
+      [class.error]="nameInvalid"
+      [class.valid]="!userForm.controls.name.pristine && !nameInvalid">
 
     <input
       type="text"
       formControlName="surname"
-      [class.error]="surnameError"
-      [class.valid]="!userForm.controls.surname.pristine && !surnameError">
+      [class.error]="surnameInvalid"
+      [class.valid]="!userForm.controls.surname.pristine && !surnameInvalid">
 
     <input
       type="email"
       formControlName="email"
-      [class.error]="emailError"
-      [class.valid]="!userForm.controls.email.pristine && !emailError">
+      [class.error]="emailInvalid"
+      [class.valid]="!userForm.controls.email.pristine && !emailInvalid">
 
     <input
       type="submit"

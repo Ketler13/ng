@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { UserService } from '../../user.service';
 import { User } from '../../user'
@@ -20,9 +20,9 @@ import 'rxjs/add/operator/do';
 export class UserPageComponent implements OnInit {
   user: User;
   userForm: FormGroup;
-  emailError: boolean;
-  nameError: boolean;
-  surnameError: boolean;
+  emailInvalid: boolean;
+  nameInvalid: boolean;
+  surnameInvalid: boolean;
 
   constructor(
     private router: Router,
@@ -30,9 +30,9 @@ export class UserPageComponent implements OnInit {
     private userService: UserService,
     private formBuilder: FormBuilder
   ) {
-    this.emailError = false;
-    this.nameError = false;
-    this.surnameError = false;
+    this.emailInvalid = false;
+    this.nameInvalid = false;
+    this.surnameInvalid = false;
   }
 
   ngOnInit(): void {
@@ -52,13 +52,14 @@ export class UserPageComponent implements OnInit {
     });
 
     this.userForm.controls.email.statusChanges
-      .subscribe(status => this.emailError = (status === 'VALID') ? false : true);
+      .subscribe(status => this.emailInvalid = (status === 'VALID') ? false : true);
 
     this.userForm.controls.name.statusChanges
-      .subscribe(status => this.nameError = (status === 'VALID') ? false : true);
+      .subscribe(status => this.nameInvalid = (status === 'VALID') ? false : true);
 
     this.userForm.controls.surname.statusChanges
-      .subscribe(status => this.surnameError = (status === 'VALID') ? false : true);
+      .subscribe(status => this.surnameInvalid = (status === 'VALID') ? false : true);
+
   }
 
   cancel(): void {
@@ -68,14 +69,16 @@ export class UserPageComponent implements OnInit {
   submit(): void {
     this.userService.setUserData(this.userForm.value, this.user.id)
       .switchMap(_ => this.userService.getUser(this.user.id))
-      .subscribe(newUser => this.user = newUser);
+      .subscribe(newUser => {
+        this.user = newUser;
+      });
   }
 
-  checkEmailUnique(formControl): Observable<boolean | {}> {
-    return this.userService.checkEmailUnique(formControl.value);
+  checkEmailUnique(formControl: FormControl): Observable<boolean | {}> {
+    return this.userService.checkEmailUnique(formControl.value, this.user.id);
   }
 
-  checkLength(formControl) {
+  checkLength(formControl: FormControl): boolean | {} {
     return formControl.value.length > 4 ? null : {error: 'small length'}
   }
 
