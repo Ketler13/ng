@@ -34,7 +34,6 @@ export class UserPageComponent implements OnInit {
       .subscribe(user => {
         this.user = user;
         this.createForm();
-        this.subscribeToFormChanges();
       });
   }
 
@@ -46,24 +45,18 @@ export class UserPageComponent implements OnInit {
     });
   }
 
-  subscribeToFormChanges(): void {
-    this.userForm.statusChanges.subscribe(value => console.log(value))
-  }
-
   cancel() {
     this.router.navigate(['/users']);
   }
 
   submit() {
-
+    this.userService.setUserData(this.userForm.value, this.user.id)
+      .switchMap(_ => this.userService.getUser(this.user.id))
+      .subscribe(newUser => this.user = newUser);
   }
 
   checkEmailUnique(formControl) {
     return this.userService.checkEmailUnique(formControl.value);
   }
 
-}
-
-function checkEmailUnique(formControl) {
-  return this.userService.checkEmailUnique(formControl.value);
 }
