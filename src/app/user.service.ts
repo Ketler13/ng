@@ -39,8 +39,12 @@ export class UserService {
     return Observable.of(true).delay(500);
   }
 
-  checkEmailUnique(email: string): Observable<boolean> {
-    return Observable.of(!this.users.some(user => user.email === email)).delay(300);
+  checkEmailUnique(email: string): Observable<boolean | {}> {
+    return (
+      this.users.some(user => user.email === email)
+      ? Observable.of({error: 'user exists'})
+      : Observable.of(null)
+    );
   }
 
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule }      from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { RouterModule, Route } from '@angular/router';
 
@@ -10,7 +10,6 @@ import { UserItemComponent } from './user-list/user-item/user-item.component';
 import { UserPageComponent } from './user-list/user-page/user-page.component';
 
 import  { UserService } from './user.service';
-import { EmailValidatorDirective } from './email-validator.directive';
 
 const routes: Route[] = [
   {path: '', redirectTo: 'users', pathMatch: 'full'},
@@ -24,12 +23,12 @@ const routes: Route[] = [
     AppComponent,
     UserListComponent,
     UserItemComponent,
-    UserPageComponent,
-    EmailValidatorDirective
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(routes)
   ],

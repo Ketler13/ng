@@ -1,19 +1,11 @@
 <div *ngIf="user">
   <p>{{user.surname}} {{user.name}}</p>
   <p>{{user.email}}</p>
-  <form #f="ngForm" (ngSubmit)="updateInfo(f)">
-    <input #nameModel="ngModel" name="surname" type="text"
-      [ngModel]="user.surname" minlength="6" required
-    >
-    <input #surnameModel="ngModel" name="firstName" type="text"
-      [ngModel]="user.name" minlength="6" required
-    >
-    <input
-      emailValidator #emailModel="ngModel" name="email" type="email"
-      [ngModel]="user.email" (keyup)="checkEmailUnique(emailModel.value)"
-      [class.error]="!emailIsUnique" required
-    >
-    <input type="submit" value="update" [disabled]="!f.valid">
+  <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate="">
+    <input type="text" formControlName="name">
+    <input type="text" formControlName="surname">
+    <input type="text" formControlName="email">
+    <input type="submit" value="save" [disabled]="userForm.pristine">
+    <input type="button" (click)="cancel()" value="cancel" [disabled]="userForm.pristine">
   </form>
-  <button type="button" (click)="cancel()">cancel</button>
 </div>

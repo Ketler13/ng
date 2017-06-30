@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { UserService } from '../../user.service';
 import { User } from '../../user'
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -17,51 +19,51 @@ import 'rxjs/add/operator/do';
 })
 export class UserPageComponent implements OnInit {
   user: User;
-  emailIsUnique: boolean;
+  userForm: FormGroup;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
-  ) {
-    this.emailIsUnique = true;
-  }
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params
       .switchMap(params => this.userService.getUser(params.id))
-      .subscribe(user => this.user = user);
+      .subscribe(user => {
+        this.user = user;
+        this.createForm();
+        this.subscribeToFormChanges();
+      });
   }
 
-  goBack() {
-    this.router.navigate(['/users']);
+  createForm(): void {
+    this.userForm = this.formBuilder.group({
+      name: [this.user.name, Validators.required],
+      surname: [this.user.surname, Validators.required],
+      email: [this.user.email, Validators.required, [this.checkEmailUnique.bind(this)]]
+    });
+  }
+
+  subscribeToFormChanges(): void {
+    this.userForm.statusChanges.subscribe(value => console.log(value))
   }
 
   cancel() {
-    this.goBack();
+    this.router.navigate(['/users']);
   }
 
-  updateInfo(f) {
-    const { firstName, surname, email } = f.form.controls;
-    if (this.emailIsUnique && f.valid) {
-      this.userService
-        .setUserData(
-          {
-            name: firstName.value,
-            surname: surname.value,
-            email: email.value
-          },
-          this.user.id
-        ).subscribe(_ => this.goBack());
-    } else {
-      alert('form is not valid');
-    }
+  submit() {
+
   }
 
-  checkEmailUnique(email: string): void {
-    if (email === this.user.email) { return }
-    this.userService.checkEmailUnique(email)
-      .subscribe(res => this.emailIsUnique = res);
+  checkEmailUnique(formControl) {
+    return this.userService.checkEmailUnique(formControl.value);
   }
 
+}
+
+function checkEmailUnique(formControl) {
+  return this.userService.checkEmailUnique(formControl.value);
 }
