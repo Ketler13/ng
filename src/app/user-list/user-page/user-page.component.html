@@ -2,10 +2,32 @@
   <p>{{user.surname}} {{user.name}}</p>
   <p>{{user.email}}</p>
   <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate="">
-    <input type="text" formControlName="name">
-    <input type="text" formControlName="surname">
-    <input type="text" formControlName="email">
-    <input type="submit" value="save" [disabled]="userForm.pristine">
-    <input type="button" (click)="cancel()" value="cancel">
+    <input
+      type="text"
+      formControlName="name"
+      [class.error]="nameError"
+      [class.valid]="!userForm.controls.name.pristine && !nameError">
+
+    <input
+      type="text"
+      formControlName="surname"
+      [class.error]="surnameError"
+      [class.valid]="!userForm.controls.surname.pristine && !surnameError">
+
+    <input
+      type="email"
+      formControlName="email"
+      [class.error]="emailError"
+      [class.valid]="!userForm.controls.email.pristine && !emailError">
+
+    <input
+      type="submit"
+      value="save"
+      [disabled]="userForm.pristine || !userForm.valid">
+
+    <input
+      type="button"
+      (click)="cancel()"
+      value="cancel">
   </form>
 </div>
