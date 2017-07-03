@@ -29,5 +29,7 @@
       type="button"
       (click)="cancel()"
       value="cancel">
+
+    <p *ngIf="nameError">{{nameError}}</p>
   </form>
 </div>

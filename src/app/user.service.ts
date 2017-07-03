@@ -47,4 +47,12 @@ export class UserService {
     );
   }
 
+  checkNameUnique(name: string, id: string): Observable<boolean | {}> {
+    return (
+      this.users.some(user => (user.name === name && user.id !== id))
+      ? Observable.of({error: 'name exists'}).delay(1000)
+      : Observable.of(null).delay(1000)
+    )
+  }
+
 }
